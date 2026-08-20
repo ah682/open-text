@@ -1,0 +1,174 @@
+{
+  "metadata": {
+    "locale": "en-GB",
+    "title": "OpenText | Secure Information Management for AI",
+    "description": "OpenText helps organisations securely manage and connect enterprise information for trusted, scalable AI.",
+    "updatedAt": "2026-08-19T00:00:00Z",
+    "indexing": "noindex"
+  },
+  "navigation": [
+    {
+      "id": "why-opentext",
+      "label": "Why OpenText",
+      "description": "Unlock data, connect people and processes, and fuel AI with trust.",
+      "overview": {
+        "label": "Why OpenText overview",
+        "href": "https://www.opentext.com/uk/why-opentext"
+      },
+      "items": [
+        {
+          "label": "AI-ready information",
+          "href": "https://www.opentext.com/uk/about/ai-ready-information",
+          "description": "Turn enterprise data into structured, accessible information."
+        }
+      ]
+    }
+  ],
+  "home": {
+    "hero": {
+      "heading": "Secure information management for AI",
+      "summary": "Control your enterprise information to drive trusted, scalable results with AI",
+      "background": {
+        "src": "./assets/images/hero.jpg",
+        "alt": "Abstract digital horizon",
+        "width": 1024,
+        "height": 313
+      },
+      "actions": [
+        {
+          "label": "Explore industry solutions",
+          "href": "https://www.opentext.com/uk/solutions/industry"
+        },
+        {
+          "label": "Explore AI solutions",
+          "href": "https://www.opentext.com/uk/limitless"
+        }
+      ]
+    },
+    "customerLogos": [
+      {
+        "src": "./assets/images/logos/heineken.png",
+        "alt": "Heineken",
+        "width": 122,
+        "height": 34
+      }
+    ],
+    "capabilities": [
+      {
+        "id": "get-ai-ready",
+        "title": "Get AI ready",
+        "summary": "Discover and prepare data, ensure governance, and use built-in guardrails.",
+        "detail": "Connect the right data from the right systems to fuel trusted AI.",
+        "image": {
+          "src": "./assets/images/capabilities/trusted-information.png",
+          "alt": "",
+          "width": 169,
+          "height": 169
+        },
+        "action": {
+          "label": "Explore AI-ready information",
+          "href": "https://www.opentext.com/uk/about/ai-ready-information"
+        }
+      }
+    ],
+    "metrics": [
+      {
+        "value": "120k+",
+        "label": "organizations worldwide",
+        "description": "Trusted by businesses in every industry and by 98 of the top 100 global companies.",
+        "action": {
+          "label": "Learn more",
+          "href": "https://www.opentext.com/uk/about"
+        }
+      }
+    ],
+    "testimonials": [
+      {
+        "id": "verizon",
+        "organization": "Verizon",
+        "logo": {
+          "src": "./assets/images/testimonials/verizon.png",
+          "alt": "Verizon",
+          "width": 416,
+          "height": 274
+        },
+        "quote": "We centralize and automate, reducing human error and duplication of effort.",
+        "person": "Christopher Mapes",
+        "role": "Technical Staff, IT Cloud Services, Verizon",
+        "action": {
+          "label": "Read the customer story",
+          "href": "https://www.opentext.com/uk/customers/verizon"
+        }
+      }
+    ],
+    "products": [
+      {
+        "id": "business-network",
+        "title": "Business Network",
+        "description": "Connect once, reach anything with a secure B2B integration platform.",
+        "action": {
+          "label": "Explore Business Network",
+          "href": "https://www.opentext.com/uk/products/business-network-cloud"
+        }
+      }
+    ],
+    "news": [
+      {
+        "id": "opentext-world-2026",
+        "eyebrow": "Event",
+        "title": "Join us for OpenText World 2026 this October in Orlando",
+        "description": "Registration is open.",
+        "image": {
+          "src": "./assets/images/news/opentext-world-2026.png",
+          "alt": "OpenText World venue in Orlando",
+          "width": 416,
+          "height": 460
+        },
+        "action": {
+          "label": "Register",
+          "href": "https://www.opentext.com/uk/resources/opentext-world"
+        },
+        "featured": true
+      }
+    ],
+    "customerStories": [
+      {
+        "id": "redcentric",
+        "organization": "Redcentric",
+        "title": "Redcentric speeds up IT operations with OpenText AI",
+        "description": "A customer story about AI-powered IT operations.",
+        "image": {
+          "src": "./assets/images/stories/redcentric.jpg",
+          "alt": "Redcentric data centre",
+          "width": 255,
+          "height": 420
+        },
+        "action": {
+          "label": "Read the Redcentric story",
+          "href": "https://www.opentext.com/uk/customers/redcentric-2"
+        }
+      }
+    ]
+  },
+  "footer": {
+    "columns": [
+      {
+        "title": "Resources for",
+        "links": [
+          {
+            "label": "Investors",
+            "href": "https://investors.opentext.com/"
+          }
+        ]
+      }
+    ],
+    "phone": "+44 118 984 8080",
+    "legal": [
+      {
+        "label": "Privacy Policy",
+        "href": "https://www.opentext.com/uk/about/copyright-information/privacy"
+      }
+    ],
+    "copyright": "Copyright © 2026 Open Text Corporation. All Rights Reserved."
+  }
+}

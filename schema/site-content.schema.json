@@ -1,0 +1,248 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/opentext-presentation/site-content.schema.json",
+  "title": "OpenText shareholder presentation content",
+  "description": "Presentation-only content contract. It intentionally models no production services, identities, credentials, telemetry, CMS internals, or persistence.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["metadata", "navigation", "home", "footer"],
+  "properties": {
+    "metadata": { "$ref": "#/$defs/metadata" },
+    "navigation": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/$defs/navigationGroup" }
+    },
+    "home": { "$ref": "#/$defs/homePage" },
+    "footer": { "$ref": "#/$defs/footer" }
+  },
+  "$defs": {
+    "nonEmptyText": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 2000
+    },
+    "slug": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$",
+      "maxLength": 100
+    },
+    "publicUrl": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 2048,
+      "pattern": "^(https://|\\./|/)"
+    },
+    "link": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["label", "href"],
+      "properties": {
+        "label": { "$ref": "#/$defs/nonEmptyText" },
+        "href": { "$ref": "#/$defs/publicUrl" },
+        "description": { "$ref": "#/$defs/nonEmptyText" },
+        "newWindow": { "type": "boolean", "default": true }
+      }
+    },
+    "image": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["src", "alt", "width", "height"],
+      "properties": {
+        "src": { "$ref": "#/$defs/publicUrl" },
+        "alt": { "type": "string", "maxLength": 300 },
+        "width": { "type": "integer", "minimum": 1, "maximum": 10000 },
+        "height": { "type": "integer", "minimum": 1, "maximum": 10000 }
+      }
+    },
+    "metadata": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["locale", "title", "description", "updatedAt", "indexing"],
+      "properties": {
+        "locale": { "type": "string", "const": "en-GB" },
+        "title": { "$ref": "#/$defs/nonEmptyText" },
+        "description": { "$ref": "#/$defs/nonEmptyText" },
+        "updatedAt": { "type": "string", "format": "date-time" },
+        "indexing": { "type": "string", "enum": ["noindex", "index"] }
+      }
+    },
+    "navigationGroup": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "label", "description", "overview", "items"],
+      "properties": {
+        "id": { "$ref": "#/$defs/slug" },
+        "label": { "$ref": "#/$defs/nonEmptyText" },
+        "description": { "$ref": "#/$defs/nonEmptyText" },
+        "overview": { "$ref": "#/$defs/link" },
+        "items": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 30,
+          "items": { "$ref": "#/$defs/link" }
+        }
+      }
+    },
+    "hero": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["heading", "summary", "background", "actions"],
+      "properties": {
+        "heading": { "$ref": "#/$defs/nonEmptyText" },
+        "summary": { "$ref": "#/$defs/nonEmptyText" },
+        "background": { "$ref": "#/$defs/image" },
+        "actions": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 3,
+          "items": { "$ref": "#/$defs/link" }
+        }
+      }
+    },
+    "capability": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "title", "summary", "detail", "image", "action"],
+      "properties": {
+        "id": { "$ref": "#/$defs/slug" },
+        "title": { "$ref": "#/$defs/nonEmptyText" },
+        "summary": { "$ref": "#/$defs/nonEmptyText" },
+        "detail": { "$ref": "#/$defs/nonEmptyText" },
+        "image": { "$ref": "#/$defs/image" },
+        "action": { "$ref": "#/$defs/link" }
+      }
+    },
+    "metric": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["value", "label", "description", "action"],
+      "properties": {
+        "value": { "type": "string", "pattern": "^[0-9][0-9A-Za-z+,.%€£$-]*$", "maxLength": 30 },
+        "label": { "$ref": "#/$defs/nonEmptyText" },
+        "description": { "$ref": "#/$defs/nonEmptyText" },
+        "action": { "$ref": "#/$defs/link" }
+      }
+    },
+    "testimonial": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "organization", "logo", "quote", "person", "role", "action"],
+      "properties": {
+        "id": { "$ref": "#/$defs/slug" },
+        "organization": { "$ref": "#/$defs/nonEmptyText" },
+        "logo": { "$ref": "#/$defs/image" },
+        "quote": { "$ref": "#/$defs/nonEmptyText" },
+        "person": { "$ref": "#/$defs/nonEmptyText" },
+        "role": { "$ref": "#/$defs/nonEmptyText" },
+        "action": { "$ref": "#/$defs/link" }
+      }
+    },
+    "contentCard": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "title", "description", "action"],
+      "properties": {
+        "id": { "$ref": "#/$defs/slug" },
+        "eyebrow": { "$ref": "#/$defs/nonEmptyText" },
+        "title": { "$ref": "#/$defs/nonEmptyText" },
+        "description": { "$ref": "#/$defs/nonEmptyText" },
+        "image": { "$ref": "#/$defs/image" },
+        "action": { "$ref": "#/$defs/link" },
+        "featured": { "type": "boolean", "default": false }
+      }
+    },
+    "customerStory": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "organization", "title", "description", "image", "action"],
+      "properties": {
+        "id": { "$ref": "#/$defs/slug" },
+        "organization": { "$ref": "#/$defs/nonEmptyText" },
+        "eyebrow": { "$ref": "#/$defs/nonEmptyText" },
+        "title": { "$ref": "#/$defs/nonEmptyText" },
+        "description": { "$ref": "#/$defs/nonEmptyText" },
+        "image": { "$ref": "#/$defs/image" },
+        "action": { "$ref": "#/$defs/link" },
+        "featured": { "type": "boolean", "default": false }
+      }
+    },
+    "homePage": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["hero", "customerLogos", "capabilities", "metrics", "testimonials", "products", "news", "customerStories"],
+      "properties": {
+        "hero": { "$ref": "#/$defs/hero" },
+        "customerLogos": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "$ref": "#/$defs/image" }
+        },
+        "capabilities": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 6,
+          "items": { "$ref": "#/$defs/capability" }
+        },
+        "metrics": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 6,
+          "items": { "$ref": "#/$defs/metric" }
+        },
+        "testimonials": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "$ref": "#/$defs/testimonial" }
+        },
+        "products": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "$ref": "#/$defs/contentCard" }
+        },
+        "news": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "$ref": "#/$defs/contentCard" }
+        },
+        "customerStories": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "$ref": "#/$defs/customerStory" }
+        }
+      }
+    },
+    "footerColumn": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["title", "links"],
+      "properties": {
+        "title": { "$ref": "#/$defs/nonEmptyText" },
+        "links": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "$ref": "#/$defs/link" }
+        }
+      }
+    },
+    "footer": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["columns", "phone", "legal", "copyright"],
+      "properties": {
+        "columns": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "$ref": "#/$defs/footerColumn" }
+        },
+        "phone": { "type": "string", "pattern": "^\\+[0-9 ()-]{7,25}$" },
+        "legal": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "$ref": "#/$defs/link" }
+        },
+        "copyright": { "$ref": "#/$defs/nonEmptyText" }
+      }
+    }
+  }
+}
