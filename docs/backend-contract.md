@@ -1,22 +1,28 @@
 # Presentation content contract
 
-This repository is deliberately static. The “backend” deliverable is the content contract in [`schema/site-content.schema.json`](../schema/site-content.schema.json), accompanied by the safe example payload in [`data/site-content.example.json`](../data/site-content.example.json).
+The [JSON Schema](../schema/site-content.schema.json) and
+[example payload](../data/site-content.example.json) describe the homepage content.
+The page currently keeps its content in HTML and JavaScript and does not load this
+JSON at runtime.
 
-The contract models only public presentation content:
+The contract covers:
 
 - page metadata and locale;
-- navigation labels and public links;
+- navigation labels and links;
 - hero, capability, product, news and customer-story cards;
-- public metrics and testimonial copy;
-- local image references; and
+- metrics and testimonials;
+- local image references;
 - footer and legal links.
 
-It intentionally does **not** model production infrastructure, CMS identifiers, API routes, authentication, roles, customer records, analytics, cookies, internal hostnames, persistence, environment variables, keys, tokens or secrets.
+## Adding a content import
 
-## Suggested future adapter
+A build-time adapter could validate an exported JSON document against the schema,
+then render the fields into the existing components. Keep credentials and CMS
+connection details in the build environment, and include only public content in
+the generated site.
 
-A future content adapter can validate an exported JSON document against the schema, then render the same fields into the existing static components at build time. Keep that adapter outside the browser bundle and emit only validated public content. The current shareholder presentation does not need or call such an adapter.
+## Browser setup
 
-## Security boundary
-
-The browser document declares a restrictive Content Security Policy. `connect-src 'none'` prevents runtime API and telemetry requests; images, fonts, CSS and JavaScript are served locally. Search runs against a small in-memory public index, and all destination links are normal public OpenText URLs opened with `noopener noreferrer`.
+The Content Security Policy blocks API requests with `connect-src 'none'`. Images,
+fonts, CSS and JavaScript are served locally. Search uses an in-memory index;
+OpenText destination links open the public website.

@@ -1,7 +1,12 @@
 # Security notes
 
-This is a static presentation repository. It accepts no user data, sets no cookies, performs no fetch/XHR requests and contains no authentication or persistence layer.
+The page runs entirely in the browser. It makes no API requests, sets no cookies
+and has no login or form submission service.
 
-Do not add production credentials, private CMS exports, customer data, analytics identifiers, environment files or internal endpoint details. If the presentation later receives build-time content, validate it against `schema/site-content.schema.json` and commit only the public output.
+The Content Security Policy uses `connect-src 'none'` and `form-action 'none'` to
+block API requests and form submissions. Review those settings when adding a
+feature that needs network access.
 
-The browser Content Security Policy intentionally uses `connect-src 'none'` and `form-action 'none'`. Treat any relaxation of those directives as a security-sensitive review.
+For a future content import, validate the public output against
+`schema/site-content.schema.json`. Keep credentials and private CMS data out of
+the generated site.
